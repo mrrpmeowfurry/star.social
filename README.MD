@@ -16,6 +16,7 @@ Request:
 ```json
 {
     "username": "meow", 
+    "email": "example@proton.me",
     "password": "secretpasswords!123" 
 }
 ```
