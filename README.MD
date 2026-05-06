@@ -15,9 +15,15 @@ localhost/star-social   latest      73d9e560402d  3 seconds ago  580 MB
 6. Restart systemd with ```systemctl --user daemon-reload```
 7. Start the service with ```systemctl --user enable now star-social```
 
+# Upgrading
+
+1. Pull the repo with ```git pull```
+2. Re-built the podman image with ```podman build -t localhost/star-social:latest .```
+3. Restart the service with ```systemctl --user restart star-social```
+
 # API Endpoins
 
-# Authentication
+## Authentication
 
 ```js
 POST /auth/register
@@ -76,7 +82,7 @@ Header: Authorization: Bearer <token>
 }
 ```
 
-# Users
+## Users
 ```js
 GET /users/:id
 GET /users/:id/followers
@@ -133,7 +139,7 @@ GET /users/:id/following
     ]
 }
 ```
-# Follows
+## Follows
 ```js
 POST   /users/:id/follow
 DELETE /users/:id/follow
@@ -163,7 +169,7 @@ Reponse:
 }
 ```
 
-# Posts
+## Posts
 ```js
 POST   /posts
 GET    /posts/:id
@@ -202,7 +208,7 @@ Reponse:
 }
 ```
 
-# Likes
+## Likes
 ```js
 POST   /posts/:id/like
 DELETE /posts/:id/like
@@ -231,7 +237,7 @@ Response:
 }
 ```
 
-# Timeline
+## Timeline
 ```js
 GET /timeline?cursor=<id>&limit=<n>
 ```
