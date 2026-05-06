@@ -267,3 +267,153 @@ Response:
     "next_cursor": 0
 }
 ```
+
+## Administration
+### Users
+```js
+POST   /admin/users/:id/ban
+DELETE /admin/users/:id/ban
+
+POST   /admin/users/:id/admin
+DELETE /admin/users/:id/admin
+
+POST   /admin/users/:id/reset-password
+DELETE /admin/users/:id
+```
+### POST /admin/users/:id/ban
+Header: Authorization: Bearer <token>
+
+Response:
+```json
+{
+    "id": 2,
+    "banned": true
+}
+```
+
+### DELETE /admin/users/:id/ban
+Header: Authorization: Bearer <token>
+
+Response:
+```json
+{
+    "id": 2,
+    "banned": false
+}
+```
+
+### POST /admin/users/:id/admin
+Header: Authorization: Bearer <token>
+
+Response:
+```json
+{
+    "id": 2,
+    "is_admin": true
+}
+```
+
+### DELETE /admin/users/:id/admin
+Header: Authorization: Bearer <token>
+
+Response:
+```json
+{
+    "id": 2,
+    "is_admin": false
+}
+```
+
+### POST /admin/users/:id/reset-password
+Header: Authorization: Bearer <token>
+
+Request:
+```json
+{
+    "new_password": "newpass123"
+}
+```
+Response:
+```json
+{
+    "id": 2,
+    "success": true
+}
+```
+### DELETE /admin/users/:id
+Header: Authorization: Bearer <token>
+
+Response:
+```json
+{
+    "id": 2,
+    "success": true
+}
+```
+
+### Posts
+```js
+DELETE /admin/posts/:id
+```
+### DELETE /admin/posts/:id
+Header: Authorization: Bearer <token>
+
+Response:
+```json
+{
+    "id": 10,
+    "success": true
+}
+```
+### Server
+```js
+POST   /admin/settings/description
+POST   /admin/announcements
+GET    /admin/announcements
+```
+### POST /admin/settings/description
+Header: Authorization: Bearer <token>
+
+Request:
+```json
+{
+    "description": "Welcome to star.social!"
+}
+```
+Response:
+```json
+{
+    "success": true
+}
+```
+
+### POST /admin/announcements
+Header: Authorization: Bearer <token>
+
+Request:
+```json
+{
+    "content": "Server maintenance tonight!"
+}
+```
+Response:
+```json
+{
+    "id": 1,
+    "success": true
+}
+```
+
+### GET /admin/announcements
+Header: Authorization: Bearer <token>
+
+Response:
+```json
+[
+    {
+        "id": 1,
+        "content": "Server maintenance tonight!",
+        "created_at": "2026-05-07T12:00:00.000Z"
+    }
+]
+```

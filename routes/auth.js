@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const auth = require("../middleware/auth");
 
-const SECRET = "supersecretkey";
+const SECRET = process.env.JWT_SECRET;;
 
 // register
 router.post("/register", (req, res) => {

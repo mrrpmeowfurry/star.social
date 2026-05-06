@@ -10,6 +10,7 @@ app.use("/users", require("./routes/users"));
 app.use("/posts", require("./routes/posts"));
 app.use("/posts", require("./routes/likes")); // nested
 app.use("/timeline", require("./routes/timeline"));
+app.use("/admin", require("./routes/admin"));
 app.get("/", (req, res) => {
     let dbStatus = "ok";
 
@@ -25,6 +26,16 @@ app.get("/", (req, res) => {
             (SELECT COUNT(*) FROM users) as users
     `).get();
 
+    const description = db.prepare(`
+        SELECT value FROM settings WHERE key = 'description'
+    `).get();
+
+    const announcement = db.prepare(`
+        SELECT content, created_at 
+        FROM announcements 
+        ORDER BY id DESC 
+        LIMIT 1
+    `).get();
 
     res.json({
         status: "ok",
@@ -38,6 +49,8 @@ app.get("/", (req, res) => {
             node: process.version
         },
         platform: {
+            description: description,
+            announcement: announcement,
             posts: counts.posts,
             users: counts.users
         },

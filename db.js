@@ -10,6 +10,8 @@ CREATE TABLE IF NOT EXISTS users (
     password_hash TEXT,
     description TEXT DEFAULT '',
     email TEXT UNIQUE,
+    is_admin INTEGER DEFAULT 0,
+    banned INTEGER DEFAULT 0,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -31,6 +33,27 @@ CREATE TABLE IF NOT EXISTS likes (
     post_id INTEGER,
     PRIMARY KEY (user_id, post_id)
 );
+
+CREATE TABLE IF NOT EXISTS settings (
+    key TEXT PRIMARY KEY,
+    value TEXT
+);
+
+CREATE TABLE IF NOT EXISTS announcements (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    content TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS admin_logs (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    admin_id INTEGER,
+    action TEXT,
+    target_id INTEGER,
+    details TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
 
 CREATE INDEX IF NOT EXISTS idx_posts_user ON posts(user_id);
 CREATE INDEX IF NOT EXISTS idx_posts_id ON posts(id DESC);
