@@ -19,21 +19,32 @@ app.get("/", (req, res) => {
         dbStatus = "error";
     }
 
+    const counts = db.prepare(`
+        SELECT
+            (SELECT COUNT(*) FROM posts) as posts,
+            (SELECT COUNT(*) FROM users) as users
+    `).get();
+
+
     res.json({
         status: "ok",
         uptime: process.uptime(),
         timestamp: new Date().toISOString(),
         database: dbStatus,
         host: {
-        hostname: os.hostname(),
-        platform: os.platform(),
-        arch: os.arch(),
-        node: process.version
+            hostname: os.hostname(),
+            platform: os.platform(),
+            arch: os.arch(),
+            node: process.version
+        },
+        platform: {
+            posts: counts.posts,
+            users: counts.users
         },
         memory: {
-        rss: process.memoryUsage().rss,
-        heapUsed: process.memoryUsage().heapUsed,
-        heapTotal: process.memoryUsage().heapTotal
+            rss: process.memoryUsage().rss,
+            heapUsed: process.memoryUsage().heapUsed,
+            heapTotal: process.memoryUsage().heapTotal
         }
     });
 });
