@@ -1,7 +1,6 @@
 const express = require("express");
 const os = require("os");
 const db = require("./db");
-const PORT = process.env.PORT
 const app = express();
 
 app.use(express.json());
@@ -39,6 +38,6 @@ app.get("/", (req, res) => {
     });
 });
 
-app.listen(PORT, () => {
-    console.log(`running on http://localhost:${PORT}`);
+app.listen(3000, () => {
+    console.log(`running on http://localhost:3000`);
 });

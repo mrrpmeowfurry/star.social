@@ -1,0 +1,19 @@
+[Unit]
+Description=star.social API
+
+[Container]
+ContainerName=star-social
+Image=localhost/star-social:latest
+PublishPort=3000:3000
+
+# %h/star.social is /home/[user]/star.social
+Volume=%h/star.social/data:/app/data:Z
+
+# Change your JWT_SECRET to something else.
+Environment=JWT_SECRET=supersecret
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=multi-user.target default.target

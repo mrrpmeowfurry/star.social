@@ -1,6 +1,21 @@
 # star.social
 
-API Endpoints
+# Running with podman
+
+1. Clone the repo with ```https://github.com/mrrpmeowfurry/star.social```
+2. Build the image with ```podman build -t localhost/star-social:latest .```
+3. Verify that the image built ```podman images```.
+```bash
+mrrpmeowfurry@tinypaws:~/star.social $ podman images
+REPOSITORY              TAG         IMAGE ID      CREATED        SIZE
+localhost/star-social   latest      73d9e560402d  3 seconds ago  580 MB
+```
+4. Copy ```star-social.container``` to ```~/.config/containers/systemd/```
+5. Edit ```JWT_SECRET``` inside ```star-social.container``` to something else.
+6. Restart systemd with ```systemctl --user daemon-reload```
+7. Start the service with ```systemctl --user enable now star-social```
+
+# API Endpoins
 
 # Authentication
 
