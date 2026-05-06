@@ -2,6 +2,12 @@
 
 # Running with podman
 
+## Prerequisite
+
+- A system running a linux distro with podman quadlets support.
+- Some linux knowledge
+
+## Installation step
 1. Clone the repo with ```https://github.com/mrrpmeowfurry/star.social```
 2. Build the image with ```podman build -t localhost/star-social:latest .```
 3. Verify that the image built ```podman images```.
