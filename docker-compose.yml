@@ -1,0 +1,11 @@
+services:
+  api:
+    build: .
+    container_name: star-social
+    ports:
+      - "${PORT}:3000"
+    volumes:
+      - ./data:/app/data
+    env_file:
+      - .env
+    restart: unless-stopped
