@@ -267,6 +267,92 @@ Response:
     "next_cursor": 0
 }
 ```
+## User settings
+```js
+GET  /settings
+
+PATCH /settings/profile
+PATCH /settings/account
+PATCH /settings/password
+```
+
+### GET /settings
+Header: Authorization: Bearer <token>
+
+Response:
+```json
+{
+    "id": 1,
+    "username": "evelyn",
+    "display_name": "Evelyn",
+    "email": "example@proton.me",
+    "description": "meow meow :3",
+    "created_at": "2026-05-05T14:30:00.000Z"
+}
+```
+
+### PATCH /settings/profile
+
+Change:
+- display name
+- description
+
+Header: Authorization: Bearer <token>
+
+Request:
+```json
+{
+    "display_name": "Evelyn",
+    "description": "meow meow :3"
+}
+```
+Response:
+```json
+{
+    "success": true
+}
+```
+
+### PATCH /settings/account
+Change:
+- username
+- email
+
+Header: Authorization: Bearer <token>
+
+Request:
+```json
+{
+    "username": "evelyn",
+    "email": "example@proton.me"
+}
+```
+Response:
+```json
+{
+    "username": "evelyn",
+    "email": "example@proton.me",
+    "success": true
+}
+```
+
+### PATCH /settings/password
+Header: Authorization: Bearer <token>
+
+Request:
+```json
+{
+    "current_password": "oldpassword",
+    "new_password": "newpassword123",
+    "confirm_new_password": "newpassword123"
+}
+```
+Response:
+```json
+{
+    "success": true
+}
+```
 
 ## Administration
 ### Users
